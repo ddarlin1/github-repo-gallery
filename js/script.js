@@ -3,6 +3,8 @@ const username = "ddarlin1";
 const repoList = document.querySelector(".repo-list");
 const repoContainer = document.querySelector(".repos");
 const repoDataDisplay = document.querySelector(".repo-data");
+const backButton = document.querySelector(".view-repos");
+const filterInput = document.querySelector(".filter-repos");
 
 // fetch data
 const getUser = async function () {
@@ -42,6 +44,7 @@ const getRepos = async function () {
 
 // display repos
 const displayRepos = function (repos) {
+  filterInput.classList.remove("hide"); // show search box
   for (const repo of repos) {
     const listItem = document.createElement("li");
     listItem.classList.add("repo");
@@ -78,6 +81,7 @@ const getRepoInfo = async function (repoName) {
 
 // display specific repo info
 const displayRepoInfo = function (repoInfo, languages) {
+  backButton.classList.remove("hide");
   repoDataDisplay.innerHTML = "";
   repoDataDisplay.classList.remove("hide");
   repoContainer.classList.add("hide");
@@ -91,3 +95,27 @@ const displayRepoInfo = function (repoInfo, languages) {
   `;
   repoDataDisplay.append(repoDiv);
 };
+
+// back button 
+backButton.addEventListener("click", function () {
+  repoContainer.classList.remove("hide");
+  repoDataDisplay.classList.add("hide");
+  backButton.classList.add("hide");
+});
+
+// dynamic search
+filterInput.addEventListener("input", function (e) {
+  const searchText = e.target.value; // captures value of search box text
+  // console.log(searchText);
+  const repos = document.querySelectorAll(".repo");
+  const searchLowerText = searchText.toLowerCase();
+
+  for (const repo of repos) { // loop through each repo inside repos element
+    const lowerText = repo.innerText.toLowerCase();
+   if (lowerText.includes(searchLowerText)) {
+    repo.classList.remove("hide");
+  } else {
+    repo.classList.add("hide");
+    }
+  }
+});
