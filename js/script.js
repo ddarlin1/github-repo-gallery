@@ -5,6 +5,16 @@ const repoContainer = document.querySelector(".repos");
 const repoDataDisplay = document.querySelector(".repo-data");
 const backButton = document.querySelector(".view-repos");
 const filterInput = document.querySelector(".filter-repos");
+const arrowDown = document.querySelector(".arrow-container");
+
+// remove arrow with click event
+document.addEventListener("click", function(event){
+  if("click" === true) {
+    arrowDown.classList.remove("hide");
+  } else {
+    arrowDown.classList.add("hide");
+  }
+});
 
 // fetch data
 const getUser = async function () {

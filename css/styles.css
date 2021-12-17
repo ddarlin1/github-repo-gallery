@@ -243,6 +243,78 @@ section.repo-data {
     border: 1px solid #ccc;
 }
 
+/* Arrows */
+.arrow-container {
+    display: block;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    bottom: 5%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotateZ(0deg);
+    animation: arrow 2s ease-in-out infinite;
+}
+.arrow-container:hover {
+    cursor: pointer;
+}
+.arrow-container:hover .arrow {
+    top: 50%;
+}
+.arrow-container:hover .arrow:before {
+    transform: translate(-50%, -50%) rotateZ(-30deg);
+}
+.arrow-container:hover .arrow:after {
+    transform: translate(-50%, -50%) rotateZ(30deg);
+}
+.arrow {
+    position: absolute;
+    left: 50%;
+    transition: all 0.4s ease;
+}
+.arrow:before, .arrow:after {
+    transition: all 0.4s ease;
+    content: '';
+    display: block;
+    position: absolute;
+    transform-origin: bottom right;
+    background:#9b8dc9;
+    width: 4px;
+    height: 50px;
+    border-radius: 10px;
+    transform: translate(-50%, -50%) rotateZ(-45deg);
+}
+.arrow:after {
+    transform-origin: bottom left;
+    transform: translate(-50%, -50%) rotateZ(45deg);
+}
+.arrow:nth-child(1) {
+    opacity: 0.3;
+    top: 35%;
+}
+.arrow:nth-child(2) {
+    opacity: 0.6;
+    top: 55%;
+}
+.arrow:nth-child(3) {
+    opacity: 0.9;
+    top: 75%;
+}
+
+@keyframes arrow {
+    0% {
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+}
+
 @media (min-width: 700px) {
     .user-info div {
         width: 45%;
@@ -255,6 +327,11 @@ section.repo-data {
 
     .repo-list li {
         width: 48%;
+    }
+
+    .arrow-container {
+        bottom: 5%;
+        left: 50%;
     }
 }
 
